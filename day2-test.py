@@ -1,6 +1,7 @@
 import unittest
 from day2 import checksum, letterCount, part2
 
+
 class MyFirstTests(unittest.TestCase):
     def test_myHelpers(self):
         self.assertEqual(letterCount('bababc'), {'a': 2, 'b': 3, 'c': 1})
