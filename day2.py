@@ -82,7 +82,48 @@ def checksum(box_list):  # part1
 
 
 def part2(box_list):  # part2
-    pass
+    """Find the two box IDs that are most similar.
+
+    INPUT: list of box IDs.
+    RETURN: string of the similar letters among the two most similar  box IDs.
+    """
+    winners = list()
+
+    for pos, boxId in enumerate(box_list):
+        for nextBoxId in box_list[pos:]:
+            if len(part2_find_diffs(boxId, nextBoxId)) == 1:
+                winners = [boxId, nextBoxId]
+
+    return part2_find_common(winners[0], winners[1])
+
+
+def part2_find_common(a, b):
+    """List the common letters of two strings.
+
+    INPUT: two strings
+    RETURN: string of just the common letters.
+    """
+    commons = str()
+
+    for pos, letter in enumerate(a):
+        if letter == b[pos]:
+            commons += letter
+    return commons
+
+
+def part2_find_diffs(a, b):
+    """List positions of differences between two strings.
+
+    INPUT: two strings
+    RETURN: list with the positions of different characters
+            in the two input strings
+    """
+    diffs = list()
+
+    for pos, letter in enumerate(a):
+        if letter != b[pos]:
+            diffs.append(pos + 1)
+    return diffs
 
 
 if __name__ == '__main__':
@@ -92,5 +133,6 @@ if __name__ == '__main__':
 
     box_list = [ii for ii in linesin.splitlines()]
 
-    print("letterCount('aabbccdddeeef'): " + str(letterCount('aabbccdddeeef')))
+    # print("letterCount('aabbccdddeeef'): " + str(letterCount('aabbccdddeeef')))
     print("checksum: " + str(checksum(box_list)))
+    print("the boxes share the letters: " + part2(box_list))
