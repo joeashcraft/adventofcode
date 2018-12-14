@@ -68,8 +68,8 @@ def part1_claim_to_coords(claim_dict):
 def part1(claims_list):
     """INPUT: list of strings. e.g. [ '#1 @ 53,238: 26x24', ... ]
     RETURN: int amt of overlap."""
-    amt_of_overlap = 0
     claims_coords = list()
+    disputed_claims_coords = set()
     unique_coords = set()
 
     claims_dicts = part1_parse_claims_list(claims_list)
@@ -79,10 +79,10 @@ def part1(claims_list):
 
     for coord in claims_coords:
         if coord in unique_coords:
-            amt_of_overlap += 1
+            disputed_claims_coords.add(coord)
         else:
             unique_coords.add(coord)
-    return amt_of_overlap
+    return len(disputed_claims_coords)
 
 
 if __name__ == '__main__':
