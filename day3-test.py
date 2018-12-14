@@ -1,5 +1,6 @@
 import unittest
 from day3 import part1, part1_parse_claims_list, part1_claim_to_coords
+from day3 import part2
 
 
 class MyFirstTests(unittest.TestCase):
@@ -9,16 +10,8 @@ class MyFirstTests(unittest.TestCase):
         '#3 @ 5,5: 2x2'
     ]
 
-    claim_test = {'id': 123, 'x': 3, 'y': 2, 'w': 5, 'h': 4}  # '#123 @ 3,2: 5x4'
-    # ...........
-    # ...........
-    # ...#####...
-    # ...#####...
-    # ...#####...
-    # ...#####...
-    # ...........
-    # ...........
-    # ...........
+    claim_test = {'id': 123, 'x': 3, 'y': 2,
+                  'w': 5, 'h': 4}  # '#123 @ 3,2: 5x4'
 
     def test_part1_myHelpers(self):
         self.assertEqual(part1_parse_claims_list(self.claims_list), [
@@ -41,11 +34,9 @@ class MyFirstTests(unittest.TestCase):
     #     self.assertEqual(part2_find_diffs('abcde', 'axcye'), [2, 4])
     #     self.assertEqual(part2_find_diffs('fghij', 'fguij'), [3])
     #     self.assertEqual(part2_find_common('fghij', 'fguij'), 'fgij')
-    #
-    # def test_part2(self):
-    #     box_list = ['abcde', 'fghij', 'klmno',
-    #                 'pqrst', 'fguij', 'axcye', 'wvxyz']
-    #     self.assertEqual(part2(box_list), 'fgij')
+
+    def test_part2(self):
+        self.assertEqual(part2(self.claims_list), 3)
 
 
 if __name__ == '__main__':

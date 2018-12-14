@@ -49,7 +49,7 @@ def part1_claim_to_coords(claim_dict):
 
     INPUT: dicts (parsed claims list).
            e.g. {'id': 123, 'x': 3, 'y': 2, 'w': 5, 'h': 4}
-    RETURN: list of lists of tuples
+    RETURN: list of tuples
             e.g. [ (4, 3), (5, 3), (6, 3), (7, 3), (8, 3),
                    (4, 4), (5, 4), (6, 4), (7, 4), (8, 4),
                    (4, 5), (5, 5), (6, 5), (7, 5), (8, 5),
@@ -66,7 +66,9 @@ def part1_claim_to_coords(claim_dict):
 
 
 def part1(claims_list):
-    """INPUT: list of strings. e.g. [ '#1 @ 53,238: 26x24', ... ]
+    """How many square inches of fabric are within two or more claims?
+
+    INPUT: list of strings. e.g. [ '#1 @ 53,238: 26x24', ... ]
     RETURN: int amt of overlap."""
     claims_coords = list()
     disputed_claims_coords = set()
@@ -85,6 +87,34 @@ def part1(claims_list):
     return len(disputed_claims_coords)
 
 
+def part2(claims_list):
+    """What is the ID of the only claim that doesn't overlap?"""
+
+    claims_coords = list()
+    disputed_claims_coords = set()
+    unique_coords = set()
+
+    claims_dicts = part1_parse_claims_list(claims_list)
+
+    for claim in claims_dicts:
+        claims_coords.extend(part1_claim_to_coords(claim))
+
+    for coord in claims_coords:
+        if coord in unique_coords:
+            disputed_claims_coords.add(coord)
+        else:
+            unique_coords.add(coord)
+
+    for claim in claims_dicts:
+        for coord in part1_claim_to_coords(claim):
+            if coord in disputed_claims_coords:
+                break
+            else:
+                continue
+        else:
+            return claim['id']
+
+
 if __name__ == '__main__':
     file = open('day3-input.txt', 'r')
     linesin = file.read()
@@ -92,5 +122,6 @@ if __name__ == '__main__':
 
     claims_list = [ii for ii in linesin.splitlines()]
 
-    print("{} square inches are claimed by 2 or more elves".format(
+    print("{} square inches are claimed by 2 or more elves.".format(
         part1(claims_list)))
+    print("{} is the claim with no disputes.".format(part2(claims_list)))
