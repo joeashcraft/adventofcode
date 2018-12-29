@@ -1,5 +1,6 @@
 import unittest
 from day4 import part1, part1_sleep_tots, part1_sleepiest_guard, part1_sleepiest_minute
+from day4 import part2, part2_sleep_tots, part2_sleepiest_guard, part2_sleepiest_minute
 
 
 class MyFirstTests(unittest.TestCase):
@@ -37,13 +38,14 @@ class MyFirstTests(unittest.TestCase):
     def test_part1(self):
         self.assertEqual(part1(self.test_input), 240)
 
-    # def test_part2_helpers(self):
-    #     self.assertEqual(part2_find_diffs('abcde', 'axcye'), [2, 4])
-    #     self.assertEqual(part2_find_diffs('fghij', 'fguij'), [3])
-    #     self.assertEqual(part2_find_common('fghij', 'fguij'), 'fgij')
+    def test_part2_myHelpers(self):
+        self.assertEqual(part2_sleep_tots(self.test_dict),
+                         [('10', 2), ('99', 3)])
+        self.assertEqual(part2_sleepiest_guard(self.test_dict), '99')
+        self.assertEqual(part2_sleepiest_minute(self.test_dict), 45)
 
-    # def test_part2(self):
-    #     self.assertEqual(part2(self.claims_list), 3)
+    def test_part2(self):
+        self.assertEqual(part2(self.test_input), 4455)
 
 
 if __name__ == '__main__':

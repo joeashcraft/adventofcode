@@ -54,13 +54,31 @@ def part1(input):
     return int(int(part1_sleepiest_guard(guards_sleeps)) * part1_sleepiest_minute(guards_sleeps))
 
 
+def part2_sleep_tots(dd):
+    return list(map(lambda guard: (guard, max(dd[guard])), dd))
+
+
+def part2_sleepiest_guard(dd):
+    return str(max(part2_sleep_tots(dd), key=lambda x: x[1])[0])
+
+
+def part2_sleepiest_minute(dd):
+    return int(dd[part2_sleepiest_guard(dd)].index(max(dd[part2_sleepiest_guard(dd)])))
+
+
 def part2(input):
     """Strategy 2: Of all guards, which guard is most frequently asleep on the same minute?
 
     What is the ID of the guard you chose multiplied by the minute you chose?
     """
+    guards_sleeps = part1_parse(input)
 
-    pass
+    print("Guard {} slept {} times during 00:{} minute".format(
+        part2_sleepiest_guard(guards_sleeps),
+        max(guards_sleeps[part2_sleepiest_guard(guards_sleeps)]),
+        part2_sleepiest_minute(guards_sleeps)
+    ))
+    return int(int(part2_sleepiest_guard(guards_sleeps)) * part2_sleepiest_minute(guards_sleeps))
 
 
 if __name__ == '__main__':
@@ -70,6 +88,7 @@ if __name__ == '__main__':
 
     input = sorted([ii for ii in linesin.splitlines()])
 
-    print("{} is ID of the guard I chose multiplied by the minute.".format(
+    print("Strategy 1: {} is ID of the guard I chose multiplied by the minute.".format(
         part1(input)))
-    # print("{} is the claim with no disputes.".format(part2(input)))
+    print("Strategy 2: {} is ID of the guard I chose multiplied by the minute.".format(
+        part2(input)))
