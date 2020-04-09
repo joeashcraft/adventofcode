@@ -15,5 +15,4 @@ class MyFirstTests(unittest.TestCase):
         self.assertEqual(part2([+7, +7, -2, -7, -4]), 14)
 
 if __name__ == '__main__':
-    unittest.main()
-
+    unittest.main(argv=['first-arg-is-ignored'], exit=False)
