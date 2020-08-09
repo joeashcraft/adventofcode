@@ -90,6 +90,7 @@ def part1_check_if_ignored(s) -> bool:
 
 
 def part1_brute_force(grid: dict, named_coords: dict, named_grid_size: dict) -> (dict, list):
+    part2_counter=0
     for coord, nearest_named_coord in grid.items():  # grid={ (0,0): 0, (1,0): 0 }
         logging.debug(f'coord {coord}')
         x=coord[0]
@@ -105,13 +106,14 @@ def part1_brute_force(grid: dict, named_coords: dict, named_grid_size: dict) -> 
             continue
 
         # named_coords={(1, 2): 42}, ... }
-        # breakpoint()
         for c in named_coords:
             # compute distance to all named coords.
             _distances_to_named[c] = part1_calc_taxi_dist(coord, c)
             # NOPE if named['count_nearest']==-1:  # for each named not ignored
             # NOPE    continue  # next named coordinate
-
+        ## part 2
+        if sum(_distances_to_named.values())<10000:
+            part2_counter+=1
         # maybe... get min dist, if dupe, then delete all dupes and start over
         # while _distances_to_named:
             # ii = _distances_to_named.popitem()
@@ -167,6 +169,8 @@ def part1_brute_force(grid: dict, named_coords: dict, named_grid_size: dict) -> 
         # or if the single nearest is an ignored named coord, then
         # record the GRID POINTS' nearest named coord as None
         # otherwise,
+    breakpoint()
+
     return grid, named_coords
 
 
@@ -201,6 +205,7 @@ def part1(input):
 
 def part2(s):
     """
+    2020-08-09 test 42511 (too low!)
     """
     pass
 
