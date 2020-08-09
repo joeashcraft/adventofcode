@@ -1,7 +1,7 @@
 #!env python3.7
 
 import unittest
-from day6 import part1, part1_parse_input, part1_calc_taxi_dist, part1_determine_grid_size, part1_populate_grid, part1_ignore_named_corners
+from day6 import part1, part1_parse_input, part1_calc_taxi_dist, part1_determine_grid_size, part1_populate_grid, part1_ignore_infinite_areas
 
 
 class MyFirstTests(unittest.TestCase):
@@ -13,23 +13,31 @@ class MyFirstTests(unittest.TestCase):
 8, 9"""
     my_input = test_input.splitlines()
 
-    expected_named_coords=[
-        {'loc': (1, 1), 'count_nearest': 0},
-        {'loc': (1, 6), 'count_nearest': 0},
-        {'loc': (8, 3), 'count_nearest': 0},
-        {'loc': (3, 4), 'count_nearest': 0},
-        {'loc': (5, 5), 'count_nearest': 0},
-        {'loc': (8, 9), 'count_nearest': 0},
-    ]
-    expected_grid_size={
-      'min_x_y': (1,1),
-      'max_x_y': (8,9)
+    expected_named_coords = {
+        (1, 1): 0,
+        (1, 6): 0,
+        (8, 3): 0,
+        (3, 4): 0,
+        (5, 5): 0,
+        (8, 9): 0
     }
-    expected_small_grid_size={
-        'min_x_y': (0,0),
-        'max_x_y': (1,2)
+    expected_named_coords_ignored = {
+        (1, 1): -1,
+        (1, 6): -1,
+        (8, 3): -1,
+        (3, 4): 0,
+        (5, 5): 0,
+        (8, 9): -1
     }
-    expected_small_grid={
+    expected_grid_size = {
+        'min_x_y': (0, 0),
+        'max_x_y': (8, 9)
+    }
+    expected_small_grid_size = {
+        'min_x_y': (0, 0),
+        'max_x_y': (1, 2)
+    }
+    expected_small_grid = {
         (0, 0): 0,
         (0, 1): 0,
         (0, 2): 0,
@@ -44,7 +52,7 @@ class MyFirstTests(unittest.TestCase):
         self.assertEqual(
             part1_calc_taxi_dist((-3, 1), (2, 3)), 7)
         self.assertEqual(
-              part1_calc_taxi_dist((1, 1), (1, 4)),
+            part1_calc_taxi_dist((1, 1), (1, 4)),
             3)
         self.assertIsInstance(
             part1_determine_grid_size(self.expected_named_coords),
@@ -58,8 +66,8 @@ class MyFirstTests(unittest.TestCase):
         self.assertEqual(
             part1_populate_grid(
                 {
-                  'min_x_y': (0,0),
-                  'max_x_y': (1,2)
+                    'min_x_y': (0, 0),
+                    'max_x_y': (1, 2)
                 }
             ),
             {
@@ -67,20 +75,13 @@ class MyFirstTests(unittest.TestCase):
                 (1, 0): 0, (1, 1): 0, (1, 2): 0
             }
         )
-        self.assertEqual(
-            part1_ignore_named_corners(
-                self.expected_named_coords,
-                self.expected_grid_size
-            ),
-            [
-                {'loc': (1, 1), 'count_nearest': -1},
-                {'loc': (1, 6), 'count_nearest': -1},
-                {'loc': (8, 3), 'count_nearest': -1},
-                {'loc': (3, 4), 'count_nearest': 0},
-                {'loc': (5, 5), 'count_nearest': 0},
-                {'loc': (8, 9), 'count_nearest': -1},
-            ]
-        )
+        # self.assertEqual(
+        #     part1_ignore_infinite_areas(
+        #         self.expected_named_coords,
+        #         self.expected_grid_size
+        #     ),
+        #     self.expected_named_coords_ignored
+        # )
 
     def test_part1(self):
         self.assertEqual(part1(self.test_input.splitlines()), 17)
