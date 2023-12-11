@@ -11,9 +11,9 @@ import logging
 DAY = 8
 
 
-def count_perimeter_trees(map: list) -> int:
-    # count of perimeter trees == 2x nubmer of rows, and 2x num of columns, minus 4 corners
-    return (2 * len(map) + 2 * len(map[0])) - 4
+# def count_perimeter_trees(map: list) -> int:
+#     # count of perimeter trees == 2x nubmer of rows, and 2x num of columns, minus 4 corners
+#     return (2 * len(map) + 2 * len(map[0])) - 4
 
 
 def map_visible_trees(row: list) -> list:
@@ -44,6 +44,21 @@ def map_visible_trees(row: list) -> list:
 
 def flatten(l):
     return [item for sublist in l for item in sublist]
+
+
+def part1_np(puzzle_input):
+    """Consider your map; how many trees are visible from outside the grid?
+
+    Use numpy this time. #TODO"""
+    _func = "part1_np"
+    _input = puzzle_input.splitlines()
+    logging.info(f"{_func}(got {len(_input)} lines)")
+
+    import numpy as np
+
+    my_arr = np.array(_input)
+
+    pass
 
 
 def part1(puzzle_input):
@@ -128,9 +143,12 @@ def part1(puzzle_input):
 
 
 def part2(puzzle_input):
+    """Consider each tree on your map. What is the highest scenic score possible for any tree?"""
     _func = "part2"
     _input = puzzle_input.splitlines()
     logging.info(f"{_func}(got {len(_input)} lines)")
+
+    # TODO
 
     pass
 

@@ -26,10 +26,10 @@ class MyFirstTests(unittest.TestCase):
     test_input_split = test_input_raw.splitlines()
 
     def test_helpers(self):
-        self.assertEqual(
-            16,
-            day8.count_perimeter_trees(self.test_input_split),
-        )
+        # self.assertEqual(
+        #     16,
+        #     day8.count_perimeter_trees(self.test_input_split),
+        # )
         self.assertEqual(
             self.test_input_visible_one_row,
             day8.map_visible_trees(self.test_input_split[0]),
@@ -42,6 +42,12 @@ class MyFirstTests(unittest.TestCase):
         with open(f"day8-input.txt", "r") as fh:
             puzzle_input = fh.read()
         self.assertEqual(day8.part1(puzzle_input), 1789)
+
+    def test_part1_np(self):
+        self.assertEqual(day8.part1_np(self.test_input_raw), 21)
+        with open(f"day8-input.txt", "r") as fh:
+            puzzle_input = fh.read()
+        self.assertEqual(day8.part1_np(puzzle_input), 1789)
 
     def test_part2(self):
         self.assertEqual(day8.part2(self.test_input_raw), 8)
