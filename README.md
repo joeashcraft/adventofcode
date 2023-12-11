@@ -1,3 +1,8 @@
 # Advent of Code
 
-* 2018-12: This is my first time hearing about Advent of Code. I want to try it out as a way to practice programming skills I've learned but rarely excerise. Maybe I'll go thru the older Events, too.
+https://adventofcode.com/
+
+<!--- advent_readme_stars table --->
+
+
+![](https://img.shields.io/badge/day%20📅-10-blue) ![](https://img.shields.io/badge/stars%20⭐-2-yellow) ![](https://img.shields.io/badge/days%20completed-0-red)
