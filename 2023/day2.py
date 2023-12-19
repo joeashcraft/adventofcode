@@ -124,11 +124,37 @@ def part1(puzzle_input):
     return sum(possible_games)
 
 
-# def part2_helper(line: str) -> int:
-#     _func = "part2_helper"
-#     logging.info(f"{_func}(got {len(_input)} lines)")
-#
-#     pass
+def minimal_hand(hands: iter) -> dict:
+    _func = "minimal_hand"
+    logging.debug(f"{_func}(hands({len(hands)})={hands})")
+
+    smallest_hand = {"red": 0, "green": 0, "blue": 0}
+    min_hand = smallest_hand.copy()
+
+    # foreach game
+    for hand in hands:
+        # foreach hand
+        logging.debug(f"    hand={hand}")
+        for color, count in hand.items():
+            if count > min_hand[color]:
+                min_hand[color] = count
+                logging.debug(f"      min_hand=={min_hand}")
+
+    logging.info(f"{_func}() returns {min_hand}")
+    return min_hand
+
+
+def cubes_powers(hand: dict) -> int:
+    _func = "cubes_powers"
+    logging.debug(f"{_func}(hand={hand})")
+
+    power = 1
+    for count in hand.values():
+        power = power * count
+        # logging.debug(f"{_func} power=={power}")
+
+    logging.info(f"{_func}() returns {power}")
+    return power
 
 
 def part2(puzzle_input):
@@ -140,7 +166,23 @@ def part2(puzzle_input):
     _input = puzzle_input.splitlines()
     logging.info(f"{_func}() got {len(_input)} lines")
 
-    pass
+    games = dict()
+    for game in _input:
+        _game = part1_line_to_game(game)
+        for k, v in _game.items():
+            games[k] = v
+            # {1: ({'blue': 3, 'red': 4}, {'red': 1, 'green': 2, 'blue': 6}, {'green': 2}), ...}
+
+    powers = []
+    for game_id, hands in games.items():
+        # foreach game, find the minimal set of cubes
+        logging.debug(f"  game={game_id}, hands={hands}")
+        min_hand = minimal_hand(hands)
+        # calc the power of the minmal set, and keep track
+        powers.append(cubes_powers(min_hand))
+        logging.debug(f"  powers=={powers}")
+
+    return sum(powers)
 
 
 if __name__ == "__main__":
