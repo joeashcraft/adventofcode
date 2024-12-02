@@ -1,0 +1,5 @@
+{
+    "project_name": "Advent of Code {% now 'local', '%Y' %}",
+    "project_slug": "{% now 'local', '%Y' %}",
+    "author": "github.com/joeashcraft"
+}
