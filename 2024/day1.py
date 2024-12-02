@@ -90,7 +90,7 @@ def part1(puzzle_input) -> int:
     # sum the distance
 
     result: int = sum(distances)
-    logging.info(f"{_func}() returns {result})")
+    logging.info(f"{_func}() returns {result}")
     return result
 
 
@@ -102,13 +102,37 @@ def part1(puzzle_input) -> int:
 #     pass
 
 
-def part2(puzzle_input):
+def calc_similarity(lists_of_columns: tuple) -> tuple:
+    """Calculate a total similarity score by adding up each number in the left list after multiplying it by the number of times that number appears in the right list."""
+    _func = "calc_similarity"
+    logzero.loglevel(logzero.DEBUG)
+    logging.debug(f"{_func}(got {len(lists_of_columns)} lists_of_columns)")
+
+    result = []
+    for aa in lists_of_columns[0]:
+        # similarity score is "Item A" times occurences in Column B
+        result.append(int(aa) * int(lists_of_columns[1].count(aa)))
+    logging.info(f"{_func}() returns {result[:9]}, ...)")
+    return tuple(result)
+
+
+def part2(puzzle_input) -> int:
+    """Once again consider your left and right lists. What is their similarity score?"""
     _func = "part2"
     _input = puzzle_input.splitlines()
     logging.debug(f"{_func}(got {len(_input)} lines)")
 
-    logging.info(f"{_func}() returns {result})")
-    pass
+    # parse input
+    parsed: tuple = parse_input(_input)
+
+    # create list of similarity scores
+    similarities: tuple = calc_similarity(parsed)
+
+    # sum similarity scores
+
+    result: int = sum(similarities)
+    logging.info(f"{_func}() returns {result}")
+    return result
 
 
 if __name__ == "__main__":
