@@ -1,7 +1,7 @@
 #!env python
 """Day $DAY: <day title>
 
-https://adventofcode.com/${{ year }}/day/$DAY
+https://adventofcode.com/${YEAR}/day/$DAY
 """
 
 import logging

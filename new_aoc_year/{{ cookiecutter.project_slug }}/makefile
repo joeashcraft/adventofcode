@@ -1,5 +1,5 @@
 .PHONY: new help check-vars solution test input
-YEAR={{ year }}
+YEAR={{ cookiecutter.project_slug }}
 export YEAR := $(YEAR)
 
 help: 
