@@ -16,16 +16,10 @@ xtwone3four
 4nineeightseven2
 zoneight234
 7pqrstsixteen"""
+    test_part2_helper_solutions = [29, 83, 13, 24, 42, 14, 76]
     test_input_solution_part2 = 281
 
     test_input_split = test_input_raw.splitlines()
-
-    # def test_helpers(self):
-    #     self.assertEqual(
-    #         6000,
-    #         day1.totals(self.test_input_split)[0],
-    #     )
-    #     self.assertEqual(len(day1.totals(self.test_input_split)), 5)
 
     def test_part1(self):
         self.assertEqual(
@@ -36,6 +30,12 @@ zoneight234
     #     with open(f"day1-input.txt", "r") as fh:
     #         puzzle_input = fh.read()
     #     self.assertEqual(day1.part1(puzzle_input), 1743217)
+
+    def test_part2_helpers(self):
+        for ii, line in enumerate(self.test_input_two.splitlines()):
+            self.assertEqual(
+                day1.part2_helper(line), self.test_part2_helper_solutions[ii]
+            )
 
     def test_part2(self):
         self.assertEqual(
