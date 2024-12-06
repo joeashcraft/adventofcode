@@ -9,7 +9,7 @@ class MyFirstTests(unittest.TestCase):
         mul(32,64]then(mul(11,8)mul(8,5))"""
     test_input_parsed = ((2, 4), (5, 5), (11, 8), (8, 5))
     test_input_solution_part1 = 161
-    test_input_solution_part2 = 0
+    test_input_solution_part2 = 48
     real_solution_part1 = 167090022
     real_solution_part2 = 0
 
@@ -31,10 +31,10 @@ class MyFirstTests(unittest.TestCase):
             puzzle_input = fh.read()
         self.assertEqual(day3.part1(puzzle_input), self.real_solution_part1)
 
-    # def test_part2(self):
-    #     self.assertEqual(
-    #         day3.part2(self.test_input_raw), self.test_input_solution_part2
-    #     )
+    def test_part2(self):
+        self.assertEqual(
+            day3.part2(self.test_input_raw), self.test_input_solution_part2
+        )
 
     # def test_part2_solved(self):
     #     with open(f"inputs/03", "r") as fh:

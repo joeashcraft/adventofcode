@@ -158,6 +158,8 @@ def part1(puzzle_input) -> int:
 
 
 def part2(puzzle_input) -> int:
+    """Handle the new instructions; what do you get if you add up all of the
+    results of just the enabled multiplications?"""
     _func = "part2"
     _input = puzzle_input.splitlines()
     logzero.loglevel(logzero.INFO)
