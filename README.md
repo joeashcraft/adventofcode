@@ -5,4 +5,4 @@ https://adventofcode.com/
 <!--- advent_readme_stars table --->
 
 
-![](https://img.shields.io/badge/day%20📅-19-blue) ![](https://img.shields.io/badge/stars%20⭐-6-yellow) ![](https://img.shields.io/badge/days%20completed-3-red)
+![](https://img.shields.io/badge/day%20📅-20-blue) ![](https://img.shields.io/badge/stars%20⭐-6-yellow) ![](https://img.shields.io/badge/days%20completed-3-red)
